@@ -1,0 +1,211 @@
+CadsController.$inject = [];
+function CadsController() {
+
+  let vm = this;
+
+  vm.createPlayers(input1, input2, input3, input4);
+
+  vm.createPlayers = function (input1, input2, input3, input4) {
+
+    //create palyers
+    var player1 = [];
+    var player2 = [];
+    var player3 = [];
+    var player4 = [];
+
+    //assignValues
+    player1 = input1;
+    vm.validateCards(player1);
+    player2 = input2;
+    vm.validateCards(player2);
+    player3 = input3;
+    vm.validateCards(player3);
+    player4 = input4;
+    vm.validateCards(player4);
+
+    vm.selectWinner(player1, player2, player3, player4);
+  }
+
+  vm.validateCards = function (player) {
+    if (player.length < 3 || player.length > 3) {
+      if (player.length < 3) {
+        console.log('Each player should have only three card, seems' + ' ' + player + ' ' + 'has less than three');
+        
+      }
+      else {
+        console.log('Each player should have only three card, seems' + ' ' + player + ' ' + 'has more than three');
+        
+      }
+
+    }
+
+  }
+
+  vm.selectWinner = function (player1, player2, player3, player4) {
+
+    var allSets = [];
+    allSets.push(player1);
+    allSets.push(player2);
+    allSets.push(player3);
+    allSets.push(player4);
+
+    vm.checkForAllA(allSets);
+    
+    // Sorting
+    allSets.forEach((element) => {
+    element.forEach((value) => {
+    if(value === 'A'){
+    value = 1;
+    }
+    else if(value === 'K'){
+    value = 13;
+    }
+    else if(value === 'Q'){
+    value = 12;
+    }
+    else if(value === 'J'){
+    value = 11;
+    }
+    },this);
+      element.sort();
+    }, this);
+    
+    vm.checkSequence(allSets);
+    vm.checkForDuplicateCads(allSets);
+    vm.checkForHighestNumber(allSets);
+  }
+
+  // This method is used to find a player who has all three 'A' cards
+  vm.checkForAllA = function (allSets) {
+    allSets.forEach((element) => {
+      if (element.length > 0) {
+        vm.count = 0;
+        element.forEach((value) => {
+          if (value === 'A') {
+            count++;
+          }
+        }, this);
+        if (vm.count > 3) {
+          console.log(element + ' ' + 'is the Winner');
+          break;
+        }
+      }
+    }, this);
+    return;
+  }
+
+  // This method is used to find a player who has a sequence order of cards
+  vm.checkSequence = function (allSets) {
+    var winner = 0;
+    let temp = [];
+    allSets.forEach((element) => {
+      var count = 0;
+      element.forEach((value) => {
+        count = count + value;
+      }, this);
+      if (count % 3 === 0) {
+        winner++;
+        temp = element;
+      }
+    }, this);
+    if (winner === 1) {
+      console.log(element + ' ' + 'is the Winner');
+      break;
+    }
+    return;
+  }
+
+  // This method is used to find a player's who has duplicate cards
+  vm.checkForDuplicateCads = function (allSets) {
+   
+    let winner = 0;
+    let temp = {};
+    let count = 0;
+    allSets.forEach((element) => {
+      element.forEach((value) => {
+        count = 0;
+        element.forEach((value1) => {
+          if (value === value1) {
+            count++;
+          }
+        }, this);
+      }, this);
+      if (count > 1) {
+        winner++;
+        temp = element;
+      }
+    }, this);
+    if (winner > 1) {
+      console.log(element + ' ' + 'is the winner');
+    }
+    else {
+      console.log('There are more than two players have similar cards');
+    }
+  }
+  
+  // This method is useful for finding a player who has a card greater than anyone else.
+  vm.checkForHighestNumber = function () {
+  
+    let a = allSets[0][2];
+    let b = allSets[1][2];
+    let c = allSets[2][2];
+    let d = allSets[3][2];
+  
+    let temp = [];
+    temp.push(a, b, c, d);
+    let finalValue = [];
+    finalValue.push(a, b, c, d);
+    finalValue.sort();
+    if (finalValue[2] !== finalValue[3]) {
+      temp.forEach((element) => {
+        if (finalValue[3] === element) {
+          console.log(allSets);
+        }
+      }, this);
+    }
+    if (allSets[0][2] > allSets[1][2]) {
+      if (allSets[0][2] > allSets[2][2]) {
+        if (allSets[0][2] > allSets[3][2]) {
+          console.log(allSets[0] + ' ' + 'is the winner');
+        }
+        else {
+          console.log(allSets[3] + ' ' + 'is the winner');
+        }
+      }
+      else if (allSets[2][2] > allSets[3][2]) {
+        console.log(allSets[2] + ' ' + 'is the winner');
+      }
+      else {
+        console.log(allSets[3] + ' ' + 'is the winner');
+      }
+    }
+    else if (allSets[1][2] > allSets[2][2]) {
+      if (allSets[1][2] > allSets[3][2]) {
+        console.log(allSets[1] + ' ' + 'is the winner');
+      }
+      else {
+        console.log(allSets[3] + ' ' + 'is the winner');
+      }
+    }
+    else if (allSets[2][2] > allSets[3][2]) {
+      console.log(allSets[2] + ' ' + 'is the winner');
+    }
+    else { 
+      console.log(allSets[3] + ' ' + 'is the winner');
+    }
+  }
+ 
+}
+
+
+
+
+
+function CardsTask() {
+  scope: { }
+  controller: CadsController,
+    controllerAs; 'vm',
+      bindToController; true
+}
+
+export default CardsTask; 
