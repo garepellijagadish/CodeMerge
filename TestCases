@@ -1,0 +1,32 @@
+Rules Understanding: 
+Use a standard deck of cards (no jocker) - which is 52 cards.
+Each player is delt only three cards - from set of 52 cards each player gets 3.
+'A' is considered to have a number value of 1 - 'A' value is consideed as 1.
+'A' is considered the top cad in a face-off. So the order is A>K>Q>J>10 .... 2 - when game is done to decide winner we need to consider the given order.
+
+Victory Understanding
+If a player gets all three cards as 'A' - he is the winner.
+
+If a player gets three cards in the below sequence - he is the winner.
+eg:
+2,3,4; 3,4,5; 4,5,6; 5,6,7; 6,7,8; 7,8,9; 8,9,10;
+9    ; 12   ; 15   ; 18   ; 21   ; 24   ; 27
+
+2,4,5; 3,5,6; 4,6,7; 5,7,8; 6,8,9; 7,9,10;
+11   ; 14   ; 17   ; 20   ; 23   ; 26
+
+Rule: If the numbers are not in sequence then it will not be divisible by 3.
+
+If a player gets at least two cards of same number - he is the the winner.
+eg:
+2,2,3; 3,3,4; 4,4,5; 5,5,6; 6,6,7; 7,7,8; 8,8,9; 9,9,10;
+
+understading:
+there should be minimum two similar and maximum three similar cards, so the least sum can be 5(1('A'),2,2) and can go upto 39(All 'K').
+
+If all players get different combination than the above then a player who has highest value wins.
+
+If the highest value is with two players then we need to give a chance to get a new card to each player and who ever gets the highest value in newly taken cards will win.
+
+Suit does not matter for all the above.
+
