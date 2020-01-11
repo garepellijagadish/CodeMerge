@@ -1,5 +1,5 @@
-CadsController.$inject = [];
-function CadsController() {
+CardsController.$inject = [];
+function CardsController() {
 
   let vm = this;
 
@@ -44,10 +44,7 @@ function CadsController() {
   vm.selectWinner = function (player1, player2, player3, player4) {
 
     var allSets = [];
-    allSets.push(player1);
-    allSets.push(player2);
-    allSets.push(player3);
-    allSets.push(player4);
+    allSets.push(player1,player2,player3,player4);
 
     vm.checkForAllA(allSets);
     
@@ -186,7 +183,7 @@ function CadsController() {
 
 function CardsTask() {
   scope: { }
-  controller: CadsController,
+  controller: CardsController,
     controllerAs; 'vm',
       bindToController; true
 }
