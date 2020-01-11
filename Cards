@@ -146,23 +146,11 @@ function CadsController() {
   // This method is useful for finding a player who has a card greater than anyone else.
   vm.checkForHighestNumber = function () {
   
-    let a = allSets[0][2];
-    let b = allSets[1][2];
-    let c = allSets[2][2];
-    let d = allSets[3][2];
+    allSets[0][2];
+    allSets[1][2];
+    allSets[2][2];
+    allSets[3][2];
   
-    let temp = [];
-    temp.push(a, b, c, d);
-    let finalValue = [];
-    finalValue.push(a, b, c, d);
-    finalValue.sort();
-    if (finalValue[2] !== finalValue[3]) {
-      temp.forEach((element) => {
-        if (finalValue[3] === element) {
-          console.log(allSets);
-        }
-      }, this);
-    }
     if (allSets[0][2] > allSets[1][2]) {
       if (allSets[0][2] > allSets[2][2]) {
         if (allSets[0][2] > allSets[3][2]) {
